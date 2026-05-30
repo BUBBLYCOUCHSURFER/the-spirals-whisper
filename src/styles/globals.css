@@ -1,0 +1,44 @@
+:root {
+  --bg: #050509;
+  --fg: #f5f5f5;
+  --accent: #e63946;
+  --muted: #777;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #111 0, #050509 55%, #000 100%);
+  color: var(--fg);
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.spiral-bg {
+  background-image: radial-gradient(circle, #111 0, #050509 40%, #000 100%);
+}
+
+.glitch-text {
+  text-shadow: 0 0 4px rgba(230, 57, 70, 0.8);
+  letter-spacing: 0.04em;
+}
