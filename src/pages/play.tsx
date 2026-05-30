@@ -6,6 +6,7 @@ import EventCard from "@/components/EventCard";
 import { allEvents } from "@/lib/gameData";
 import type { GameEvent, Choice } from "@/lib/gameData";
 import { isUnlocked } from "@/lib/unlockStore";
+import { generateGumroadCheckoutUrl } from "@/lib/gumroad";
 
 const PlayPage: React.FC = () => {
   const [unlocked, setUnlocked] = useState(false);
@@ -14,6 +15,8 @@ const PlayPage: React.FC = () => {
   const [events, setEvents] = useState<GameEvent[]>([]);
   const [isEnded, setIsEnded] = useState(false);
   const [ending, setEnding] = useState("");
+  const [email, setEmail] = useState("");
+  const [showEmailPrompt, setShowEmailPrompt] = useState(false);
 
   useEffect(() => {
     const u = isUnlocked();
@@ -40,12 +43,17 @@ const PlayPage: React.FC = () => {
     }
   };
 
-  const handleUnlock = async () => {
-    const res = await fetch("/api/checkout", { method: "POST" });
-    const data = await res.json();
-    if (data.url) {
-      window.location.href = data.url;
-    }
+  const handleUnlock = () => {
+    // Show email prompt (optional but recommended)
+    setShowEmailPrompt(true);
+  };
+
+  const handleProceedToCheckout = () => {
+    const username = process.env.NEXT_PUBLIC_GUMROAD_USERNAME || "your_username";
+    const productId = process.env.NEXT_PUBLIC_GUMROAD_PRODUCT_ID || "your_product_id";
+    
+    const checkoutUrl = generateGumroadCheckoutUrl(username, productId, email);
+    window.location.href = checkoutUrl;
   };
 
   const handleReset = () => {
@@ -152,33 +160,101 @@ const PlayPage: React.FC = () => {
             background: "rgba(5,5,9,0.9)"
           }}
         >
-          <p
-            style={{
-              margin: "0 0 0.75rem",
-              fontSize: "0.9rem",
-              color: "#ddd"
-            }}
-          >
-            You're playing the demo spiral. Unlock the full set of events,
-            endings, and visual glitches with a one–time payment.
-          </p>
-          <button
-            onClick={handleUnlock}
-            style={{
-              padding: "0.6rem 1.2rem",
-              borderRadius: "999px",
-              border: "none",
-              background:
-                "linear-gradient(135deg, #e63946, #ffb703, #e63946)",
-              color: "#050509",
-              fontWeight: 600,
-              cursor: "pointer",
-              fontSize: "0.9rem",
-              width: "100%"
-            }}
-          >
-            Unlock the Spiral
-          </button>
+          {!showEmailPrompt ? (
+            <>
+              <p
+                style={{
+                  margin: "0 0 0.75rem",
+                  fontSize: "0.9rem",
+                  color: "#ddd"
+                }}
+              >
+                You're playing the demo spiral. Unlock the full set of events,
+                endings, and visual glitches with a one–time payment.
+              </p>
+              <button
+                onClick={handleUnlock}
+                style={{
+                  padding: "0.6rem 1.2rem",
+                  borderRadius: "999px",
+                  border: "none",
+                  background:
+                    "linear-gradient(135deg, #e63946, #ffb703, #e63946)",
+                  color: "#050509",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  fontSize: "0.9rem",
+                  width: "100%"
+                }}
+              >
+                Unlock the Spiral
+              </button>
+            </>
+          ) : (
+            <>
+              <p
+                style={{
+                  margin: "0 0 0.75rem",
+                  fontSize: "0.9rem",
+                  color: "#ddd"
+                }}
+              >
+                Enter your email to receive your license key and unlock access.
+              </p>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                style={{
+                  width: "100%",
+                  padding: "0.6rem",
+                  borderRadius: "6px",
+                  border: "1px solid rgba(230,57,70,0.3)",
+                  background: "rgba(5,5,9,0.9)",
+                  color: "#f5f5f5",
+                  marginBottom: "0.75rem",
+                  fontSize: "0.9rem"
+                }}
+              />
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
+                <button
+                  onClick={() => setShowEmailPrompt(false)}
+                  style={{
+                    padding: "0.6rem 1.2rem",
+                    borderRadius: "999px",
+                    border: "1px solid rgba(245,245,245,0.2)",
+                    background: "transparent",
+                    color: "#f5f5f5",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    fontSize: "0.9rem"
+                  }}
+                >
+                  Back
+                </button>
+                <button
+                  onClick={handleProceedToCheckout}
+                  disabled={!email}
+                  style={{
+                    padding: "0.6rem 1.2rem",
+                    borderRadius: "999px",
+                    border: "none",
+                    background:
+                      email
+                        ? "linear-gradient(135deg, #e63946, #ffb703, #e63946)"
+                        : "rgba(230,57,70,0.3)",
+                    color: "#050509",
+                    fontWeight: 600,
+                    cursor: email ? "pointer" : "not-allowed",
+                    fontSize: "0.9rem"
+                  }}
+                >
+                  Continue
+                </button>
+              </div>
+            </>
+          )}
         </div>
       )}
     </Layout>

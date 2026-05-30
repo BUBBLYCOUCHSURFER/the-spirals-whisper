@@ -31,7 +31,7 @@ const UnlockPage: React.FC = () => {
           has been hiding.
         </p>
         <p style={{ color: "#777", fontSize: "0.85rem", marginBottom: "1.5rem" }}>
-          Redirecting to the full game in 3 seconds...
+          Check your email for your license key. Redirecting to the full game in 3 seconds...
         </p>
         <button
           onClick={() => router.push("/play")}

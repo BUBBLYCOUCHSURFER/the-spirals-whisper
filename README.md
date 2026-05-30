@@ -5,7 +5,7 @@ A social horror game for group calls and late-night chats. The more you talk abo
 ## Features
 
 - **Free Demo**: 2 events to get started
-- **Premium Unlock**: One-time Stripe payment to unlock 4+ additional events with deeper, creepier narratives
+- **Premium Unlock**: One-time Gumroad payment to unlock 4+ additional events with deeper, creepier narratives
 - **Group Play**: Read prompts aloud, vote as a group, tap the choice together
 - **Corruption Meter**: Track how far the spiral has pulled you in
 - **Junji Ito Aesthetic**: Dark, atmospheric UI with glitch text and horror vibes
@@ -14,7 +14,7 @@ A social horror game for group calls and late-night chats. The more you talk abo
 
 - **Next.js 14** (Pages Router)
 - **React 18** + TypeScript
-- **Stripe** for one-time payments
+- **Gumroad** for one-time payments
 - **Vercel** deployment-ready
 
 ## Getting Started
@@ -27,17 +27,20 @@ cd the-spirals-whisper
 npm install
 ```
 
-### 2. Set Up Stripe
+### 2. Set Up Gumroad
 
-1. Create a [Stripe account](https://stripe.com)
-2. Go to **Developers → API Keys** and copy your secret and publishable keys
-3. Create a **Product** and **Price** in the Stripe Dashboard
+1. Create a [Gumroad account](https://gumroad.com)
+2. Create a new product:
+   - Name: "Unlock The Spiral's Whisper"
+   - Price: Set your desired price (e.g., $2.99, $4.99, $9.99)
+   - Enable **License Keys** in product settings
+3. Get your **Product ID** from the product URL (example: `https://gumroad.com/products/XXXXXX` → `XXXXXX`)
 4. Update `.env.local`:
 
 ```bash
-STRIPESECRETKEY=sk_test_...
-NEXTPUBLICSTRIPEPUBLISHABLEKEY=pk_test_...
-STRIPEPRICEID=price_...
+GUMROAD_USERNAME=your_gumroad_username
+GUMROAD_PRODUCT_ID=your_product_id
+GUMROAD_LICENSE_KEY=your_license_key (optional for advanced verification)
 ```
 
 ### 3. Run Locally
@@ -57,16 +60,13 @@ the-spirals-whisper/
 │  │  ├─ index.tsx          # Landing page
 │  │  ├─ play.tsx           # Game room
 │  │  ├─ unlock.tsx         # Post-payment success
-│  │  ├─ _app.tsx           # Global app wrapper
-│  │  └─ api/
-│  │     ├─ checkout.ts     # Stripe Checkout session
-│  │     └─ webhook.ts      # Stripe webhook (optional)
+│  │  └─ _app.tsx           # Global app wrapper
 │  ├─ components/
 │  │  ├─ Layout.tsx         # Main container
 │  │  ├─ SpiralMeter.tsx    # Corruption progress bar
 │  │  └─ EventCard.tsx      # Individual event prompt + choices
 │  ├─ lib/
-│  │  ├─ stripe.ts          # Stripe client
+│  │  ├─ gumroad.ts         # Gumroad integration
 │  │  ├─ gameData.ts        # Free + premium events
 │  │  └─ unlockStore.ts     # localStorage unlock manager
 │  └─ styles/
@@ -84,8 +84,6 @@ the-spirals-whisper/
 - **`/`** – Landing page with game description
 - **`/play`** – Main game room (free events or all events if unlocked)
 - **`/unlock`** – Post-payment success screen
-- **`/api/checkout`** – Create Stripe Checkout session
-- **`/api/webhook`** – Stripe webhook handler (stub for now)
 
 ## Gameplay
 
@@ -101,19 +99,25 @@ the-spirals-whisper/
 1. Push this repo to GitHub
 2. Import it into [Vercel](https://vercel.com/new)
 3. Add environment variables:
-   - `STRIPESECRETKEY`
-   - `NEXTPUBLICSTRIPEPUBLISHABLEKEY`
-   - `STRIPEPRICEID`
-   - `STRIPEWEBHOOKSECRET` (optional)
+   - `GUMROAD_USERNAME`
+   - `GUMROAD_PRODUCT_ID`
 4. Deploy!
+
+## How Gumroad Integration Works
+
+- When a user clicks "Unlock the Spiral," they're prompted to enter their email
+- The app redirects to your Gumroad checkout with a success redirect URL
+- After payment, Gumroad redirects back to `/unlock?success=1`
+- The game unlocks locally via localStorage
+- Users receive their license key via email from Gumroad
 
 ## Next Steps
 
 - Add 10–20 more events in Junji Ito–inspired themes
 - Implement room codes so groups can sync choices in real-time
 - Add user authentication for persistent unlock status
-- Wire up Stripe webhooks to a database for unlock verification
 - Add sound effects and visual glitches on certain choices
+- Integrate license key verification (backend validation)
 
 ## License
 
