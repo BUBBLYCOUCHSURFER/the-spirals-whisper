@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardbound Chronicles: Dungeon Run - Premium Dark Fantasy Deckbuilder</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark-tabletop">
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-title-container">
+                <h1 class="hero-title">Cardbound Chronicles</h1>
+                <h2 class="hero-subtitle">Dungeon Run</h2>
+                <p class="hero-tagline">Yu-Gi-Oh! Strategy Meets Asymmetric Horror Survival</p>
+            </div>
+            
+            <button class="cta-button primary-cta" onclick="scrollToSection('combat-simulator')">
+                <span class="button-text">Launch Game Blueprint</span>
+                <span class="button-glow"></span>
+            </button>
+
+            <!-- MEDIA DOWNLOAD BOX -->
+            <div class="media-download-section">
+                <h3 class="section-title">Media Assets</h3>
+                
+                <div class="media-item">
+                    <div class="media-info">
+                        <h4 class="media-name">Teaser Trailer: Cinematic Intro</h4>
+                        <p class="media-meta">42.8 MB • Duration: 01:15 • Rendered: 2026-05-28</p>
+                        <p class="media-hash"><strong>SHA-256:</strong> e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</p>
+                        <details class="verification-instructions">
+                            <summary>Verification Instructions</summary>
+                            <div class="verification-content">
+                                <h5>Windows (PowerShell):</h5>
+                                <code>certutil -hashfile teaser-trailer.mp4 SHA256</code>
+                                <h5>macOS/Linux:</h5>
+                                <code>shasum -a 256 teaser-trailer.mp4</code>
+                            </div>
+                        </details>
+                    </div>
+                    <a href="#" class="media-download-btn">Download</a>
+                </div>
+
+                <div class="media-item">
+                    <div class="media-info">
+                        <h4 class="media-name">Gameplay Trailer: Mechanics & Shop Preview</h4>
+                        <p class="media-meta">118.4 MB • Duration: 03:45 • Rendered: 2026-06-01</p>
+                        <p class="media-hash"><strong>SHA-256:</strong> 8f43c0a721456a1b15197022045bb294247ae31e459b934cb495191b7852c922</p>
+                        <details class="verification-instructions">
+                            <summary>Verification Instructions</summary>
+                            <div class="verification-content">
+                                <h5>Windows (PowerShell):</h5>
+                                <code>certutil -hashfile gameplay-trailer.mp4 SHA256</code>
+                                <h5>macOS/Linux:</h5>
+                                <code>shasum -a 256 gameplay-trailer.mp4</code>
+                            </div>
+                        </details>
+                    </div>
+                    <a href="#" class="media-download-btn">Download</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLASS SHOWCASES -->
+    <section id="class-showcases" class="class-showcase-section">
+        <h2 class="section-title">Choose Your Path</h2>
+        
+        <div class="class-tabs">
+            <button class="class-tab active" data-class="hunter">Hunter</button>
+            <button class="class-tab" data-class="occultist">Occultist</button>
+            <button class="class-tab" data-class="beastmaster">Beastmaster</button>
+            <button class="class-tab" data-class="rogue">Rogue</button>
+        </div>
+
+        <div class="class-display-panel">
+            <!-- Hunter -->
+            <div class="class-info active" id="hunter-info" data-class="hunter">
+                <h3>Hunter</h3>
+                <div class="class-stats">
+                    <p><strong>Health:</strong> 30</p>
+                    <p><strong>Mana:</strong> 5</p>
+                    <p><strong>Gold Multiplier:</strong> 1.5x</p>
+                </div>
+                <p class="class-description">Master of precision strikes and loot-driven tactics. Hunters excel at burst damage and accumulating wealth.</p>
+                <div class="morality-slider">
+                    <label>Deck Alignment:</label>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="100" value="30" class="morality-range" id="hunter-morality">
+                        <span class="slider-label light">Light</span>
+                        <span class="slider-label dark">Dark</span>
+                    </div>
+                </div>
+                <div class="starter-cards">
+                    <h4>Starter Cards:</h4>
+                    <ul>
+                        <li><strong>Keen Shot:</strong> 1 Mana, 3 damage</li>
+                        <li><strong>Bloodhound's Snarl:</strong> 2 Mana, 4 damage, +1 Gold if kill</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Occultist -->
+            <div class="class-info" id="occultist-info" data-class="occultist">
+                <h3>Occultist</h3>
+                <div class="class-stats">
+                    <p><strong>Health:</strong> 25</p>
+                    <p><strong>Mana:</strong> 6</p>
+                    <p><strong>Doom Affinity:</strong> +2</p>
+                </div>
+                <p class="class-description">Wielders of forbidden magic. Occultists harness Doom for powerful effects but risk collapsing the dungeon.</p>
+                <div class="morality-slider">
+                    <label>Deck Alignment:</label>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="100" value="70" class="morality-range" id="occultist-morality">
+                        <span class="slider-label light">Light</span>
+                        <span class="slider-label dark">Dark</span>
+                    </div>
+                </div>
+                <div class="starter-cards">
+                    <h4>Starter Cards:</h4>
+                    <ul>
+                        <li><strong>Shadow Bolt:</strong> 2 Mana, 4 damage</li>
+                        <li><strong>Cursed Mirror:</strong> 1 Doom, copy spell (+1 Mana)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Beastmaster -->
+            <div class="class-info" id="beastmaster-info" data-class="beastmaster">
+                <h3>Beastmaster</h3>
+                <div class="class-stats">
+                    <p><strong>Health:</strong> 28</p>
+                    <p><strong>Mana:</strong> 5</p>
+                    <p><strong>Summon Scaling:</strong> +1 per Doom</p>
+                </div>
+                <p class="class-description">Bond with spirits and beasts. Beastmasters build board presence through summoning and gain power from darkness.</p>
+                <div class="morality-slider">
+                    <label>Deck Alignment:</label>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="100" value="50" class="morality-range" id="beastmaster-morality">
+                        <span class="slider-label light">Light</span>
+                        <span class="slider-label dark">Dark</span>
+                    </div>
+                </div>
+                <div class="starter-cards">
+                    <h4>Starter Cards:</h4>
+                    <ul>
+                        <li><strong>Pack Tactics:</strong> 2 Mana, summon 1/1 Wolves</li>
+                        <li><strong>Shadow Pact:</strong> 3 Mana, summon 3/3 Phantom (5/5 at Doom 5+)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Rogue -->
+            <div class="class-info" id="rogue-info" data-class="rogue">
+                <h3>Rogue</h3>
+                <div class="class-stats">
+                    <p><strong>Health:</strong> 32</p>
+                    <p><strong>Mana:</strong> 5</p>
+                    <p><strong>Evasion:</strong> 20%</p>
+                </div>
+                <p class="class-description">Swift, cunning operators. Rogues excel at cheap spells, evasion, and setting traps for unsuspecting foes.</p>
+                <div class="morality-slider">
+                    <label>Deck Alignment:</label>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="100" value="40" class="morality-range" id="rogue-morality">
+                        <span class="slider-label light">Light</span>
+                        <span class="slider-label dark">Dark</span>
+                    </div>
+                </div>
+                <div class="starter-cards">
+                    <h4>Starter Cards:</h4>
+                    <ul>
+                        <li><strong>Backstab:</strong> 1 Mana, 5 damage</li>
+                        <li><strong>Dungeon's Grin:</strong> 0 Mana (exhaust), 2 damage + stun</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARD SPOTLIGHT -->
+    <section id="card-spotlight" class="card-spotlight-section">
+        <h2 class="section-title">Signature Cards</h2>
+        
+        <div class="card-gallery">
+            <!-- Bloodhound's Snarl -->
+            <div class="card-display" style="--doom-color: #fbbf24;">
+                <div class="card-header">
+                    <h3 class="card-title">Bloodhound's Snarl</h3>
+                    <span class="card-cost">2 Mana</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-type">Hunter • Attack</p>
+                    <div class="card-effect">
+                        <p><strong>Effect:</strong> Deal 4 damage. If the target dies, gain +1 Gold.</p>
+                    </div>
+                    <p class="card-flavor"><em>"The hunt always pays."</em></p>
+                </div>
+                <div class="card-border-glow"></div>
+            </div>
+
+            <!-- Cursed Mirror -->
+            <div class="card-display" style="--doom-color: #dc2626;">
+                <div class="card-header">
+                    <h3 class="card-title">Cursed Mirror</h3>
+                    <span class="card-cost">1 Doom</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-type">Occultist • Relic</p>
+                    <div class="card-effect">
+                        <p><strong>Effect:</strong> Copy any spell played this turn, but it costs +1 Mana.</p>
+                    </div>
+                    <p class="card-flavor"><em>"Reflections lie louder than words."</em></p>
+                </div>
+                <div class="card-border-glow"></div>
+            </div>
+
+            <!-- Shadow Pact -->
+            <div class="card-display" style="--doom-color: #0f766e;">
+                <div class="card-header">
+                    <h3 class="card-title">Shadow Pact</h3>
+                    <span class="card-cost">3 Mana</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-type">Beastmaster • Skill</p>
+                    <div class="card-effect">
+                        <p><strong>Effect:</strong> Summon a 3/3 Phantom Wolf. At Doom 5+, it becomes a 5/5 Demon Wolf.</p>
+                    </div>
+                    <p class="card-flavor"><em>"Loyalty has teeth."</em></p>
+                </div>
+                <div class="card-border-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MONETIZATION & SHOP PREVIEW -->
+    <section id="shop-preview" class="shop-preview-section">
+        <h2 class="section-title">Desktop Shop & Monetization</h2>
+        <p class="section-subtitle">Seamless checkout with automated server fulfillment and global compliance</p>
+        
+        <div class="shop-mockup">
+            <!-- Card Packs -->
+            <div class="shop-panel">
+                <div class="shop-header">
+                    <h3>Randomized Card Packs</h3>
+                </div>
+                <div class="shop-items">
+                    <div class="shop-item">
+                        <h4>Booster Pack</h4>
+                        <p class="item-description">5 random cards • 2-3 rare drops</p>
+                        <span class="item-price">$2.99</span>
+                        <button class="shop-button">Purchase</button>
+                        <p class="item-note"><strong>Auto-Fulfillment:</strong> Cards added to collection instantly</p>
+                    </div>
+                    <div class="shop-item">
+                        <h4>Starter Set</h4>
+                        <p class="item-description">15 cards + guaranteed rare</p>
+                        <span class="item-price">$9.99</span>
+                        <button class="shop-button">Purchase</button>
+                        <p class="item-note"><strong>Auto-Fulfillment:</strong> Full set delivered immediately</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Souls Currency -->
+            <div class="shop-panel">
+                <div class="shop-header">
+                    <h3>Souls Currency Bundles</h3>
+                </div>
+                <div class="shop-items">
+                    <div class="shop-item">
+                        <h4>500 Souls</h4>
+                        <p class="item-description">For cosmetics & battle pass tiers</p>
+                        <span class="item-price">$5.99</span>
+                        <button class="shop-button">Purchase</button>
+                        <p class="item-note"><strong>Secure Checkout:</strong> PCI-compliant, encrypted</p>
+                    </div>
+                    <div class="shop-item">
+                        <h4>2000 Souls</h4>
+                        <p class="item-description">Best value bundle</p>
+                        <span class="item-price">$14.99</span>
+                        <button class="shop-button">Purchase</button>
+                        <p class="item-note"><strong>Secure Checkout:</strong> Instant credit</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Battle Pass -->
+            <div class="shop-panel">
+                <div class="shop-header">
+                    <h3>Premium Battle Pass</h3>
+                </div>
+                <div class="shop-items">
+                    <div class="shop-item full-width">
+                        <h4>Seasonal Battle Pass</h4>
+                        <p class="item-description">50 tiers • Exclusive cosmetics • Bonus XP</p>
+                        <span class="item-price">$9.99</span>
+                        <button class="shop-button">Purchase</button>
+                        <p class="item-note"><strong>Webhook Processing:</strong> Progress synced to your account. Can be purchased multiple times per season.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="compliance-notice">
+            <h4>Global Compliance & Security</h4>
+            <ul>
+                <li>✓ PCI DSS Level 1 Compliance (Stripe handled)</li>
+                <li>✓ GDPR Data Protection</li>
+                <li>✓ 256-bit SSL Encryption</li>
+                <li>✓ Automated webhook fulfillment (zero manual processing)</li>
+                <li>✓ Real-time server-side validation</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 Cardbound Chronicles. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Discord</a> • <a href="#">Twitter</a> • <a href="#">Support</a>
+        </div>
+    </footer>
+
+    <!-- COMBAT SIMULATOR MODAL -->
+    <section id="combat-simulator" class="combat-section">
+        <!-- Content loaded by js/combat.js -->
+    </section>
+
+    <script src="js/app.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/cardEngine.js"></script>
+    <script src="js/combat.js"></script>
+</body>
+</html>

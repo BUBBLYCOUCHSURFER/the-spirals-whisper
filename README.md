@@ -1,124 +1,86 @@
-# The Spiral's Whisper
+# Cardbound Chronicles: Dungeon Run
 
-A social horror game for group calls and late-night chats. The more you talk about it, the closer it gets.
+**A Premium Dark Fantasy TTRPG Deckbuilder Game**
 
-## Features
+A desktop-optimized, atmospheric card-battler blending Yu-Gi-Oh strategy with asymmetric horror survival. Players explore procedurally generated dungeons, battle horrific creatures, and build powerful decks in real-time tactical duels.
 
-- **Free Demo**: 2 events to get started
-- **Premium Unlock**: One-time Gumroad payment to unlock 4+ additional events with deeper, creepier narratives
-- **Group Play**: Read prompts aloud, vote as a group, tap the choice together
-- **Corruption Meter**: Track how far the spiral has pulled you in
-- **Junji Ito Aesthetic**: Dark, atmospheric UI with glitch text and horror vibes
+## 🎮 Game Overview
 
-## Tech Stack
+- **Genre**: Dark Fantasy, Deckbuilder, Rogue-like, Tactical RPG
+- **Modes**: Solo, Co-op (1-4 players), PvPvE
+- **Aesthetics**: Deep obsidian backgrounds, slate gray UI, crimson danger indicators, radiant gold accents
+- **Core Mechanics**: Turn-based card combat, deck synergy, Doom scaling, deck fusion, ghost hand legacy
 
-- **Next.js 14** (Pages Router)
-- **React 18** + TypeScript
-- **Gumroad** for one-time payments
-- **Vercel** deployment-ready
+## 🎨 Design System
 
-## Getting Started
+**Color Palette**:
+- Background: Deep Obsidian Black (#0B0B0C)
+- UI Containers: Slate Gray (#1F2937)
+- Danger: Crimson (#DC2626)
+- Highlights: Gold (#F59E0B)
+- Text: Parchment White (#F8FAFC)
 
-### 1. Clone and Install
+## 🚀 Features
+
+### Landing Page
+- Hero section with title & CTA
+- Media download with SHA-256 verification
+- Interactive class showcases with morality sliders
+- Card spotlight gallery
+- Monetization preview (packs, souls, battle pass)
+
+### Combat Simulator
+- Turn-based card battles
+- Monster AI with attacks
+- Hand management & discard pile
+- Victory/defeat overlays
+
+### Backend
+- Player persistence (MongoDB/PostgreSQL)
+- Card collections & decks
+- Battle pass tracking
+- Stripe integration with webhooks
+
+## 📦 Installation
 
 ```bash
 git clone https://github.com/BUBBLYCOUCHSURFER/the-spirals-whisper.git
 cd the-spirals-whisper
 npm install
-```
-
-### 2. Set Up Gumroad
-
-1. Create a [Gumroad account](https://gumroad.com)
-2. Create a new product:
-   - Name: "Unlock The Spiral's Whisper"
-   - Price: Set your desired price (e.g., $2.99, $4.99, $9.99)
-   - Enable **License Keys** in product settings
-3. Get your **Product ID** from the product URL (example: `https://gumroad.com/products/XXXXXX` → `XXXXXX`)
-4. Update `.env.local`:
-
-```bash
-GUMROAD_USERNAME=your_gumroad_username
-GUMROAD_PRODUCT_ID=your_product_id
-GUMROAD_LICENSE_KEY=your_license_key (optional for advanced verification)
-```
-
-### 3. Run Locally
-
-```bash
+cp .env.example .env
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+## 🎮 Starting the Game
 
-## Project Structure
+Open `frontend/index.html` in your browser to view the landing page and combat simulator.
 
-```
-the-spirals-whisper/
-├─ src/
-│  ├─ pages/
-│  │  ├─ index.tsx          # Landing page
-│  │  ├─ play.tsx           # Game room
-│  │  ├─ unlock.tsx         # Post-payment success
-│  │  └─ _app.tsx           # Global app wrapper
-│  ├─ components/
-│  │  ├─ Layout.tsx         # Main container
-│  │  ├─ SpiralMeter.tsx    # Corruption progress bar
-│  │  └─ EventCard.tsx      # Individual event prompt + choices
-│  ├─ lib/
-│  │  ├─ gumroad.ts         # Gumroad integration
-│  │  ├─ gameData.ts        # Free + premium events
-│  │  └─ unlockStore.ts     # localStorage unlock manager
-│  └─ styles/
-│     └─ globals.css        # Dark theme + animations
-├─ public/
-│  └─ favicon.ico
-├─ package.json
-├─ next.config.mjs
-├─ tsconfig.json
-└─ .env.local (git-ignored)
-```
+## 🔗 Key Files
 
-## Pages
+- `frontend/index.html` - Landing page + combat simulator markup
+- `frontend/css/style.css` - Dark tabletop theme (obsidian, slate, gold, crimson)
+- `frontend/js/app.js` - Main application logic
+- `frontend/js/cardEngine.js` - Card definitions & starter decks
+- `frontend/js/combat.js` - Combat mechanics & UI rendering
+- `backend/server.js` - Express.js server (development stage)
 
-- **`/`** – Landing page with game description
-- **`/play`** – Main game room (free events or all events if unlocked)
-- **`/unlock`** – Post-payment success screen
+## 📋 Game Rules Summary
 
-## Gameplay
+### Turn Structure
+1. **Draw Phase**: Draw 5 cards (reshuffle discard if deck empty)
+2. **Action Phase**: Play cards spending Mana
+3. **End Phase**: Discard hand, reset Mana, trigger monster attack
 
-1. Start a session on `/play`
-2. Read the event prompt aloud to your group
-3. Let everyone vote; tap the choice you agree on
-4. Watch your corruption meter rise
-5. If you run out of events, you get an ending message
-6. Premium unlock reveals darker, longer events
+### Victory
+Reduce monster health to 0
 
-## Deployment to Vercel
+## 🎴 Classes
 
-1. Push this repo to GitHub
-2. Import it into [Vercel](https://vercel.com/new)
-3. Add environment variables:
-   - `GUMROAD_USERNAME`
-   - `GUMROAD_PRODUCT_ID`
-4. Deploy!
+- **Hunter** (30 HP, 5 Mana): Burst damage + loot
+- **Occultist** (25 HP, 6 Mana): Forbidden magic + Doom
+- **Beastmaster** (28 HP, 5 Mana): Board presence + summoning
+- **Rogue** (32 HP, 5 Mana): Cheap spells + evasion
 
-## How Gumroad Integration Works
+## 📄 License
 
-- When a user clicks "Unlock the Spiral," they're prompted to enter their email
-- The app redirects to your Gumroad checkout with a success redirect URL
-- After payment, Gumroad redirects back to `/unlock?success=1`
-- The game unlocks locally via localStorage
-- Users receive their license key via email from Gumroad
-
-## Next Steps
-
-- Add 10–20 more events in Junji Ito–inspired themes
-- Implement room codes so groups can sync choices in real-time
-- Add user authentication for persistent unlock status
-- Add sound effects and visual glitches on certain choices
-- Integrate license key verification (backend validation)
-
-## License
-
-MIT
+MIT License

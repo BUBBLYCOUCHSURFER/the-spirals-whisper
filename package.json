@@ -1,25 +1,40 @@
 {
-  "name": "the-spirals-whisper",
+  "name": "cardbound-chronicles",
   "version": "1.0.0",
-  "private": true,
+  "description": "Premium dark fantasy TTRPG deckbuilder - Yu-Gi-Oh strategy meets asymmetric horror survival",
+  "main": "backend/server.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "NODE_ENV=development nodemon backend/server.js",
+    "start": "NODE_ENV=production node backend/server.js",
+    "test": "jest --coverage",
+    "lint": "eslint . --ext .js"
   },
+  "keywords": [
+    "card-game",
+    "deckbuilder",
+    "dark-fantasy",
+    "tactical-rpg",
+    "ttrpg"
+  ],
+  "author": "BUBBLYCOUCHSURFER",
+  "license": "MIT",
   "dependencies": {
-    "next": "14.2.0",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "stripe": "^16.0.0"
+    "express": "^4.18.2",
+    "dotenv": "^16.0.3",
+    "mongoose": "^7.0.0",
+    "stripe": "^11.10.0",
+    "jsonwebtoken": "^9.0.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "express-rate-limit": "^6.7.0"
   },
   "devDependencies": {
-    "typescript": "^5.5.0",
-    "@types/node": "^20.0.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "eslint": "^8.0.0",
-    "eslint-config-next": "14.2.0"
+    "nodemon": "^2.0.20",
+    "jest": "^29.5.0",
+    "eslint": "^8.40.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
