@@ -2,7 +2,7 @@
 
 **A Premium Dark Fantasy TTRPG Deckbuilder Game**
 
-A desktop-optimized, atmospheric card-battler blending Yu-Gi-Oh strategy with asymmetric horror survival. Players explore procedurally generated dungeons, battle horrific creatures, and build powerful decks in real-time tactical duels.
+A desktop-optimized, atmospheric card-battler blending fast tactical card-duel strategy with asymmetric horror survival. Players explore procedurally generated dungeons, battle horrific creatures, and build powerful decks in real-time tactical duels.
 
 ## 🎮 Game Overview
 

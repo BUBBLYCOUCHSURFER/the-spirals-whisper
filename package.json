@@ -1,11 +1,12 @@
 {
   "name": "cardbound-chronicles",
   "version": "1.0.0",
-  "description": "Premium dark fantasy TTRPG deckbuilder - Yu-Gi-Oh strategy meets asymmetric horror survival",
+  "description": "Premium dark fantasy TTRPG deckbuilder - fast tactical card duels meet asymmetric horror survival",
   "main": "backend/server.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon backend/server.js",
     "start": "NODE_ENV=production node backend/server.js",
+    "seed": "node backend/seed.js",
     "test": "jest --coverage",
     "lint": "eslint . --ext .js"
   },
@@ -19,20 +20,21 @@
   "author": "BUBBLYCOUCHSURFER",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "dotenv": "^16.0.3",
-    "mongoose": "^7.0.0",
-    "stripe": "^11.10.0",
-    "jsonwebtoken": "^9.0.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.7.0",
     "helmet": "^7.0.0",
-    "express-rate-limit": "^6.7.0"
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.0",
+    "stripe": "^11.10.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20",
+    "eslint": "^8.40.0",
     "jest": "^29.5.0",
-    "eslint": "^8.40.0"
+    "mongodb-memory-server": "^11.3.0",
+    "nodemon": "^2.0.20"
   },
   "engines": {
     "node": ">=16.0.0"
